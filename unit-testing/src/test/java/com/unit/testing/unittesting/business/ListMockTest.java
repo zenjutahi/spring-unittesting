@@ -6,21 +6,21 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class ListMockTest {
 
+    List<String> mock = mock(List.class);
+
     @Test
     public void size_basic() {
-        List mock = mock(List.class);
+
         when(mock.size()).thenReturn(5);
         assertEquals(5,mock.size());
     }
 
     @Test
     public void returnDifferentValues() {
-        List mock = mock(List.class);
         when(mock.size()).thenReturn(5).thenReturn(10);
         assertEquals(5,mock.size());
         assertEquals(10, mock.size());
@@ -28,7 +28,6 @@ public class ListMockTest {
 
     @Test
     public void returnWithParameters() {
-        List mock = mock(List.class);
         when(mock.get(0)).thenReturn("Learn Testing");
         assertEquals("Learn Testing",mock.get(0));
         assertEquals(null, mock.get(1));
@@ -37,9 +36,22 @@ public class ListMockTest {
     // Argument Matchers
     @Test
     public void returnWithGenericParameters() {
-        List mock = mock(List.class);
         when(mock.get(anyInt())).thenReturn("Learn Testing");
         assertEquals("Learn Testing",mock.get(0));
         assertEquals("Learn Testing", mock.get(1));
+    }
+
+    @Test
+    public void verificationBasics() {
+        //SUT
+        String Value1 = mock.get(0);
+        String Value2 = mock.get(2);
+
+        //Verify that a method is called
+        verify(mock).get(0);
+        verify(mock, times(2)).get(anyInt());
+        verify(mock, atLeast(1)).get(anyInt());
+        verify(mock, atMost(2)).get(anyInt());
+        verify(mock, never()).get(4);
     }
 }
