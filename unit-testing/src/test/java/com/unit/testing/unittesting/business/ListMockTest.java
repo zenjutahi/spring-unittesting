@@ -3,6 +3,7 @@ package com.unit.testing.unittesting.business;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -79,5 +80,31 @@ public class ListMockTest {
         List<String> allValues = captor.getAllValues();
         assertEquals("SomeArgument String", allValues.get(0));
         assertEquals("SomeArgument String2", allValues.get(1));
+    }
+
+    @Test
+    public void mocking() {
+        ArrayList arrayListMock = mock(ArrayList.class);
+        System.out.println(arrayListMock.get(0)); //null
+        System.out.println(arrayListMock.size()); //0
+        System.out.println(arrayListMock.add("Test"));
+        System.out.println(arrayListMock.size());
+
+        when(arrayListMock.size()).thenReturn(5);
+        System.out.println(arrayListMock.size());
+    }
+    @Test
+    public void spying() {
+        ArrayList arrayListSpy = spy(ArrayList.class);
+        arrayListSpy.add("Test 0");
+        System.out.println(arrayListSpy.get(0)); //null
+        System.out.println(arrayListSpy.size()); //0
+        System.out.println(arrayListSpy.add("Test"));
+        System.out.println(arrayListSpy.size());
+
+        when(arrayListSpy.size()).thenReturn(5);
+        System.out.println(arrayListSpy.size());
+
+        verify(arrayListSpy).add("Test");
     }
 }
