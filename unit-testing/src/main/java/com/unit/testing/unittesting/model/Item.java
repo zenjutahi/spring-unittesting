@@ -1,10 +1,25 @@
 package com.unit.testing.unittesting.model;
 
+
+import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
+import javax.persistence.Id;
+import javax.persistence.Transient;
+
+@Entity
 public class Item {
+
+    @Id
     private Integer id;
     private String name;
     private Integer quantity;
     private Integer price;
+
+    @Transient
+    private int value;
+
+    public Item() {
+    }
 
     public Item(Integer id, String name, Integer quantity, Integer price) {
         this.id = id;
@@ -43,6 +58,14 @@ public class Item {
 
     public Integer getPrice() {
         return price;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    public int getValue() {
+        return value;
     }
 
     @Override
