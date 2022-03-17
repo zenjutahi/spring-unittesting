@@ -1,7 +1,6 @@
 package com.unit.testing.unittesting.business;
 
 import com.unit.testing.unittesting.data.ItemRepository;
-import com.unit.testing.unittesting.data.SomeDataService;
 import com.unit.testing.unittesting.model.Item;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -27,7 +26,7 @@ public class ItemBusinessServiceTest {
     private ItemRepository itemRepository;
 
     @Test
-    public void calculateSumUsingDataService_basic() {
+    public void retrieveAllItemsTest() {
         when(itemRepository.findAll()).thenReturn(
                 Arrays.asList(
                         new Item(2,"item", 10,57),
