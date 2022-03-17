@@ -1,4 +1,4 @@
-package com.unit.testing.unittesting;
+package com.unit.testing.unittesting.data;
 
 import com.unit.testing.unittesting.data.ItemRepository;
 import com.unit.testing.unittesting.model.Item;
